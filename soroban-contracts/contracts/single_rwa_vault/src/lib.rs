@@ -335,6 +335,7 @@ impl SingleRWAVault {
     pub fn claim_yield_for_epoch(e: &Env, caller: Address, epoch: u32) -> i128 {
         caller.require_auth();
         require_not_paused(e);
+        require_not_blacklisted(e, &caller);
 
         if get_has_claimed_epoch(e, &caller, epoch) {
             panic_with_error!(e, Error::NoYieldToClaim);
