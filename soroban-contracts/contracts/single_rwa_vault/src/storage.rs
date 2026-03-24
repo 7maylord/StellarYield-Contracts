@@ -66,6 +66,7 @@ pub enum DataKey {
     // --- Vault state ---
     VaultState,
     Paused,
+    Locked,
     ActivationTimestamp,
 
     // --- Epoch / yield ---

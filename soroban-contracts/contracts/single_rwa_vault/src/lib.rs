@@ -1140,6 +1140,17 @@ fn require_not_blacklisted(e: &Env, addr: &Address) {
     }
 }
 
+fn acquire_lock(e: &Env) {
+    if get_locked(e) {
+        panic!("reentrancy detected");
+    }
+    put_locked(e, true);
+}
+
+fn release_lock(e: &Env) {
+    put_locked(e, false);
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
